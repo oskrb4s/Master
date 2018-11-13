@@ -44,6 +44,7 @@ int main()
 		a.UpdateU();
 	}
 	std::cout << "Exec " << a.GetCluster() << std::endl;
+	std::cout << "FunObj " << a.GetFcn() << std::endl;
 	t1 = clock();
 	double time = (double(t1 - t0) / CLOCKS_PER_SEC);
 	std::cout << "Execution Time: " << time << std::endl;

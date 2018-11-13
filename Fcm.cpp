@@ -77,7 +77,7 @@ void Fcm<M1, cluster_n, data_n, xdata>::UpdateU()
 	Tem = PowElementMatrix<M0, double>(d, cluster_n, data_n, p);
 	pwdTem1 = PowElementMatrix<M0, double>(d, cluster_n, data_n, 2);
 	pwUTem2 = PowElementMatrix<M0, double>(membership_mat, cluster_n, data_n, m);
-	res = Multiply<M0, M0, M0>(pwdTem1, pwUTem2, cluster_n, data_n, data_n);
+	res = MultiplyElement<M0>(pwdTem1, pwUTem2, cluster_n, data_n);
 	V1 VV = Summation<V1, M0>(res, cluster_n, data_n, 2);
 	FunObj = 0;
 	for (int i = 0; i < data_n; i++)
@@ -85,7 +85,7 @@ void Fcm<M1, cluster_n, data_n, xdata>::UpdateU()
 		FunObj = FunObj + VV[i];
 
 	}
-	std::cout << "funob" << FunObj << std::endl;
+	
 	VecRow = Summation<V1, M0>(Tem, cluster_n, data_n, 2);
 	for (int i = 0; i < cluster_n; i++)
 	{
@@ -136,4 +136,10 @@ M1 Fcm<M1, cluster_n, data_n, xdata>::GetCluster()
 
 	}
 	return D;
+}
+
+template<typename M1, int cluster_n, int data_n, int xdata>
+double Fcm<M1, cluster_n, data_n, xdata>::GetFcn()
+{
+	return FunObj;
 }

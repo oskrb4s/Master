@@ -19,6 +19,7 @@ public:
 	using  V1 = itk::Vector<double, data_n>;
 	using  V2 = itk::Vector<double, cluster_n>;
 	M1 GetCluster();
+	double GetFcn();
 	M0 membership_mat;
 	M1 data;
 	double m;

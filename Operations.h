@@ -5,6 +5,7 @@
 template<typename M0, typename M1>  M0 Summation(M1 A,int ra,int ca, int rc);
 template<typename M0, typename TD> M0 PowElementMatrix(M0 A,int ra,int ca, TD m);
 template<typename M0, typename M1, typename M2> M0 Multiply(M1 A, M2 B, int ra,int ca,int cb);
+template<typename M0> M0 MultiplyElement(M0 A, M0 B, int ra, int ca);
 template<typename M0, typename M1, typename M2> M0 ElementToElementDivision(M1 A, M2 B,int ra,int ca);
 template<typename M0, typename M1,typename M2> M0 Distance(M1 A, M2 B,int ra,int ca,int cluster, int c);
 
@@ -71,6 +72,23 @@ inline M0 Multiply(M1 A, M2 B, int ra, int ca, int cb)
 
 	}
 	return product;
+}
+
+template<typename M0>
+inline M0 MultiplyElement(M0 A, M0 B, int ra, int ca)
+{
+	M0 res;
+	
+	for (int row = 0; row < ra; row++)
+	{
+		for (int col = 0; col < ca; col++)
+		{
+			res(row, col) = A(row, col)*B(row, col);
+			
+		}
+
+	}
+	return res;
 }
 
 template<typename M0, typename M1, typename M2>
